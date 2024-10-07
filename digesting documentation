@@ -1,0 +1,118 @@
+Pondering Paths
+
+1. The Root
+
+Challenge
+Collect the flag by running the pwn program using its absolute path.
+
+Thought Process
+I needed to execute the pwn program using its absolute path, which starts from the root directory / in Linux.
+
+Solution
+  /pwn
+
+  
+2. Program and Absolute Paths
+
+Challenge
+Execute the run program located in the /challenge directory to collect the flag.
+
+Thought Process
+I had to run the run program from the /challenge directory by using its absolute path.
+
+Solution
+/challenge/run
+
+3. Position Thyself
+
+Challenge
+Collect the flag by running the /challenge/run program from a specific directory.
+
+Thought Process
+I needed to switch to the correct directory, as running /challenge/run alone indicated I was not in the right place. 
+  The error message pointed me to /usr/share/build-essential, so I navigated there.
+
+Solution:
+cd /usr/share/build-essential  
+/challenge/run
+
+
+4. Position Elsewhere
+
+Challenge
+Run the /challenge/run program from another specified directory.
+
+Thought Process
+Following the same logic as before, I had to move to the /var directory based on the error message.
+
+Solution:
+cd /var  
+/challenge/run
+
+
+5. Position Yet Elsewhere
+
+Challenge
+Run the /challenge/run program from a different specified path.
+
+Thought Process
+I needed to move to the /etc directory and execute the program as directed by the error message.
+
+Solution:
+cd /etc  
+/challenge/run
+
+
+6. Implicit Relative Paths, From /
+
+Challenge
+Run /challenge/run using a relative path while in the root directory /.
+
+Thought Process
+Since the current working directory (cwd) was /, I had to run the run program without using the full path. 
+A hint mentioned the relative path starts with "c", which led me to think of the challenge directory. I removed the leading / to make it a relative path.
+
+Solution:
+cd /  
+challenge/run
+
+
+7. Explicit Relative Paths, From /
+
+Challenge
+Execute challenge/run using . in the relative path while being in the root directory /.
+
+Thought Process
+Since . represents the current directory, I needed to prepend it to the relative path to explicitly tell the system to run the program from the current directory.
+
+Solution:
+cd /  
+./challenge/run
+
+
+8. Implicit Relative Path
+
+Challenge
+Execute the run program using a relative path while the current working directory is /challenge.
+
+Thought Process
+When in the /challenge directory, executing the program directly as run wouldn’t work because Linux doesn't search the current directory automatically. 
+I needed to prepend ./ to run the program from the current directory.
+
+Solution:
+cd /challenge  
+./run
+
+
+9. Home Sweet Home
+
+Challenge
+Run /challenge/run with a file path argument following these constraints:
+
+The argument must be an absolute path.
+The path must be inside the home directory.
+The argument must be three characters or fewer before expansion.
+Thought Process
+The ~ symbol expands to /home/hacker, my home directory. Using it along with a single character file name would meet the constraints.
+
+/challenge/run ~/f
