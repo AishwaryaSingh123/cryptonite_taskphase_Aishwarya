@@ -19,7 +19,7 @@ Read the flag from an absolute path without changing directories.
 Thought Process
 I accessed the flag using its absolute path and cat command since I couldn't use cd.
 Solution:
-cat /path/to/crazy/directory/flag
+cat /opt/binaryninja/flag
 After running this command I got the flag
 
 Challenge 4:
