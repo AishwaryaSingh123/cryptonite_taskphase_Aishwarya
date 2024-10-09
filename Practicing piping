@@ -65,35 +65,55 @@ grep pwn.college /tmp/data.txt
 
 '''
 
-GREPPING LIVE OUTPUT
-THOUGHT PROCESS: The goal was to use /challenge/run to generate a large amount of text and pipe that output directly into grep to find the flag.
-Solutions:
+##GREPPING LIVE OUTPUT
+Use grep to find the important line in output among other thousand of lines.
+###THOUGHT PROCESS:
+The goal was to use /challenge/run to generate a large amount of text and pipe that output directly into grep to find the flag.
+###Solutions:
+'''
 /challenge/run | grep pwn.college
+'''
 
-Grepping Errors
-THOUGHT PROCESS: The objective was to run /challenge/run, which generates a lot of output, including errors. By combining stderr and stdout, I could grep through all output for the flag.
-
-SOLUTION:
+##Grepping Errors
+ll be dealing with overwhelming output, but this time it will be on standard error. 
+To find the flag, I’ll run the command that generates the output and then use grep to search through the error output.
+###THOUGHT PROCESS:
+The objective was to run /challenge/run, which generates a lot of output, including errors. By combining stderr and stdout, I could grep through all output for the flag.
+###SOLUTION:
+'''
 /challenge/run 2>&1 | grep pwn.college
+'''
 
-Duplicating Piped Data with tee
-THOUGHT PROCESS: I needed to pipe the output of /challenge/pwn into /challenge/college, but I also wanted to see what /challenge/pwn was outputting. Using tee, I could intercept the data and save it for reference.
-
-SOLUTION:
+##Duplicating Piped Data with tee
+In this process, I need to pipe the output of /challenge/pwn into /challenge/college. 
+However, before doing that, I’ll need to intercept the data from /challenge/pwn to see what it requires from me.
+##THOUGHT PROCESS: 
+I needed to pipe the output of /challenge/pwn into /challenge/college, but I also wanted to see what /challenge/pwn was outputting. 
+Using tee, I could intercept the data and save it for reference.
+###SOLUTION:
+'''
 /challenge/pwn | tee output | /challenge/college
 cat output
 /challenge/pwn --secret "4tfLWu_k" | /challenge/college
+'''
 
 
-Writing to Multiple Programs
-THOUGHT PROCESS: I needed to run the /challenge/hack command and duplicate its output as input to both the /challenge/the and /challenge/planet commands.
-
-SOLUTION:
+##Writing to Multiple Programs
+ I need to run the /challenge/hack command and duplicate its output as input to both the /challenge/the and /challenge/planet commands. 
+###THOUGHT PROCESS:
+I needed to run the /challenge/hack command and duplicate its output as input to both the /challenge/the and /challenge/planet commands.
+###SOLUTION:
+'''
 /challenge/hack | tee >(/challenge/the) | /challenge/planet
+'''
 
-
-THOUGHT PROCESS:
-
+##SPLIT PIPING
+ I need to combine my knowledge of >, 2>, and | to get the flag. 
+Redirect stdout from /challenge/hack to /challenge/planet.
+Redirect stderr from /challenge/hack to /challenge/the
+###THOUGHT PROCESS:
 I needed to send the stdout from /challenge/hack to /challenge/planet.Simultaneously, I needed to redirect the stderr from /challenge/hack to /challenge/the.I had to figure out how to do this without mixing the outputs.
-SOLUTION:
+###SOLUTION:
+'''
 /challenge/hack 2> >(/challenge/the) > >(/challenge/planet)
+'''
