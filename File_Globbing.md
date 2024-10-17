@@ -1,4 +1,4 @@
-#File Gobbling
+# File Gobbling
 
 ## Matching with *
 change your directory to /challenge, but use globbing to keep the argument you pass to cd to at most four characters!
