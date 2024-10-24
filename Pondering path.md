@@ -34,6 +34,7 @@ By creating an executable command and modifying the PATH variable, we were able 
 ```
 nano win
 chmod +x win
+echo $PATH
 PATH='/home/hacker'
 /challenge/run
 ```
