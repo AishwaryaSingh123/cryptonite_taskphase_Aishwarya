@@ -3,7 +3,7 @@
 ### Description
 In this challenge, we need to execute multiple commands (/challenge/pwn and /challenge/college)
 ### Thought Process
-By chaining commands, we need to chain commands using semicolons (;).
+By chaining commands, we need to chain commands using semicolons (;)
 ### Solution
 ```
 /challenge/pwn; /challenge/college
