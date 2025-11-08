@@ -4,7 +4,7 @@ Thought Process
 I used cat to read the contents of the flag file located in the home directory.
 Solution:
 cat ~/flag
-After running this command I got the flag
+After running this command I got the flag.
 
 Challenge 2:
 Retrieve the flag from the /flag file using its absolute path.
